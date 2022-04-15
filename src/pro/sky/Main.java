@@ -1,11 +1,14 @@
 package pro.sky;
 
+import java.util.Arrays;
+
 public class Main {
 
     public static void main(String[] args) {
 
         System.out.println("\nArrays. Part 1");
 
+        // Arrays. Part 1
         // Task 1. Arrays declarations
         int[] iThree = new int[] {1, 2, 3};
         float[] fThree = {1.57f, 7.654f, 9.986f};
@@ -84,7 +87,7 @@ public class Main {
         System.out.println("Минимальная сумма трат за день составила " + minPayment + " рублей. "
                 + "Максимальная сумма трат за день составила " + maxPayment + " рублей");
 
-        // Well, there is one unnecessary iteration in the previous code for_all cycle,
+        // Well, there is one unnecessary iteration in the previous code foreach cycle,
         // so the optimal version with classic for cycle
 
         minPayment = paymentsDB[0];
@@ -118,7 +121,91 @@ public class Main {
         for(int i  = reverseFullName.length - 1; i >= 0; i--){
             System.out.print(reverseFullName[i]);
         }
+        System.out.println("\n");
+
+        // Task 5. Cross in the 3x3 matrix. Version 1.
+
+        int[][] matrix = {{1, 0, 1},{0, 1, 0}, {1, 0, 1}};
+
+        for (int[] row : matrix) {
+            for (int column : row) {
+                System.out.print(column + " ");
+            }
+            System.out.println();
+        }
         System.out.println();
+
+        // Task 5. Cross in the 3x3 matrix. Version 2. Universal for all Matrix sizes
+
+        final int MATRIX_SIZE = 9;
+        int[][] matrix1 = new int[MATRIX_SIZE][MATRIX_SIZE];
+
+        for (int i = 0; i < matrix1.length; i++) {
+            for (int j = 0; j < matrix1[i].length; j++) {
+                if(j == i)
+                    matrix1[i][j] = 1;
+                else if (j == (matrix1.length - 1 - i))
+                    matrix1[i][j] = 1;
+                else
+                    matrix1[i][j] = 0;
+                System.out.print(matrix1[i][j] + " ");
+            }
+            System.out.println();
+        }
+        System.out.println();
+
+        // Task 6. Resident error
+
+        int[] invertedArray = {5, 4, 3, 2, 1};
+        int[] normalArray = new int[5];
+
+        for(int i = invertedArray.length-1; i >= 0; i-- ){
+            normalArray[normalArray.length - 1 - i] = invertedArray[i];
+        }
+        System.out.println("Было: " + Arrays.toString(invertedArray) + "\nСтало: "
+                + Arrays.toString(normalArray) + "\n");
+
+        // Task 7. Resident error 2
+
+        final int ARRAY_SIZE = 11;
+        int[] invertedAndNormalArray = new int[ARRAY_SIZE];
+
+        // Array initialization
+        for(int i = 0; i < invertedAndNormalArray.length; i++)
+            invertedAndNormalArray[i] = invertedAndNormalArray.length - i;
+        System.out.println("Было: " + Arrays.toString(invertedAndNormalArray));
+
+        // Array reverse
+        for(int i = 0; i < invertedAndNormalArray.length / 2; i++){
+            invertedAndNormalArray[i] =invertedAndNormalArray[i] +
+                    invertedAndNormalArray[invertedAndNormalArray.length - 1 - i];
+            invertedAndNormalArray[invertedAndNormalArray.length - 1 - i] = invertedAndNormalArray[i]
+                    - invertedAndNormalArray[invertedAndNormalArray.length - 1 - i];
+            invertedAndNormalArray[i] =invertedAndNormalArray[i] -
+                    invertedAndNormalArray[invertedAndNormalArray.length - 1 - i];
+        }
+        System.out.println("Стало: " + Arrays.toString(invertedAndNormalArray) + "\n");
+
+        // Task 8 & 9. Two numbers sum is equal -2
+
+        int[] definedArray = {-6, 2, 5, -8, 8, 10, 4,-7, 12, 1};
+        int pairsCounter = 1;
+        System.out.println("Defined array: " + Arrays.toString(definedArray));
+
+        // All pairs search
+
+        breakPoint:
+        for(int i = 0; i < definedArray.length; i++){
+            for(int j = i; j < definedArray.length; j++){
+                if(definedArray[i] + definedArray[j] == -2){
+                    System.out.println("Pair #" + (pairsCounter++) + ": " + definedArray[i] + ", "
+                            + definedArray[j]);
+                    // Version for only first pair found. Task #8
+                    // break breakPoint;
+                }
+            }
+        }
+        System.out.println("We found " + (pairsCounter - 1) + " pairs!");
 
     }
 
