@@ -157,7 +157,7 @@ public class Main {
         // Task 6. Resident error
 
         int[] invertedArray = {5, 4, 3, 2, 1};
-        int[] normalArray = new int[5];
+        int[] normalArray = new int[invertedArray.length];
 
         for(int i = invertedArray.length-1; i >= 0; i-- ){
             normalArray[normalArray.length - 1 - i] = invertedArray[i];
@@ -201,7 +201,7 @@ public class Main {
                     System.out.println("Pair #" + (pairsCounter++) + ": " + definedArray[i] + ", "
                             + definedArray[j]);
                     // Version for only first pair found. Task #8
-                    // break breakPoint;
+                    break breakPoint;
                 }
             }
         }
